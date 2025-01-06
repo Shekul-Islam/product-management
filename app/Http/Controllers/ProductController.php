@@ -5,6 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; // <-- Add this line
 
 class ProductController extends Controller
 {
@@ -54,7 +64,7 @@ class ProductController extends Controller
     {
         // Delete product image if exists
         if ($product->image) {
-            \Storage::disk('public')->delete($product->image);
+            Storage::disk('public')->delete($product->image); // <-- Use Storage here
         }
 
         $product->delete();
